@@ -69,10 +69,10 @@ export default function App() {
           headers: { 'Content-Type': 'application/json' },
           body: JSON.stringify({ taskId, action: 'status' }),
         });
-        
+
         const statusData = await statusResponse.json();
         if (!statusResponse.ok || !statusData.success) {
-            throw new Error(statusData.error || 'Failed to check task status');
+          throw new Error(statusData.error || 'Failed to check task status');
         }
 
         const progressPercentage = (statusData.progress * 100) || 0;
@@ -105,7 +105,7 @@ export default function App() {
       setError('Please upload an image and provide a modification prompt.');
       return;
     }
-    
+
     resetState();
     setIsGenerating(true);
     setStatus('Uploading image and starting job...');
@@ -131,7 +131,7 @@ export default function App() {
       setIsGenerating(false);
     }
   };
-  
+
   // Reusable styles
   const radioGroupStyle = { marginBottom: '20px', border: '1px solid #ccc', padding: '10px', borderRadius: '5px' };
   const radioLabelStyle = { marginRight: '15px', cursor: 'pointer' };
@@ -140,7 +140,7 @@ export default function App() {
   return (
     <div style={{ padding: '20px', maxWidth: '700px', margin: '0 auto', fontFamily: 'sans-serif' }}>
       <h1>Image-to-Image with RunwayML</h1>
-      
+
       {/* --- STEP 1: UPLOAD IMAGE --- */}
       <div style={sectionStyle}>
         <h3>Step 1: Upload a Source Image</h3>
@@ -163,7 +163,7 @@ export default function App() {
               <label style={{ display: 'block', marginBottom: '5px' }}>Modification Prompt:</label>
               <input type="text" placeholder="e.g., 'make it look like a watercolor painting'" value={prompt} onChange={e => setPrompt(e.target.value)} style={{ width: '100%', padding: '10px', fontSize: '16px', boxSizing: 'border-box' }} />
             </div>
-          
+
             <div style={radioGroupStyle}>
               <p style={{ marginTop: 0, fontWeight: 'bold' }}>Aspect Ratio:</p>
               <label style={radioLabelStyle}><input type="radio" value="1280:720" checked={ratio === '1280:720'} onChange={() => setRatio('1280:720')} /> Landscape (16:9)</label>
@@ -188,7 +188,7 @@ export default function App() {
       )}
 
       {error && (<div style={{ marginTop: '20px', padding: '10px', backgroundColor: '#ffebee', color: '#c62828' }}>Error: {error}</div>)}
-      
+
       {modifiedImageUrl && (
         <div style={{ marginTop: '20px' }}>
           <h3>Generated Image:</h3>

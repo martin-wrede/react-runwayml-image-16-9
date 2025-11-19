@@ -46,7 +46,8 @@ async function onRequest(context) {
         method: "POST",
         headers: COMMON_HEADERS,
         body: JSON.stringify({
-          model: "gen4_image",
+          model: "gemini_2.5_flash",
+          //  'gen4_image',
           promptText: prompt,
           promptImage: imageDataUrl,
           ratio,
